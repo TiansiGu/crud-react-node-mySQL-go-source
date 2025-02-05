@@ -90,7 +90,7 @@
 //   console.log("Connect to the backend!!!!");
 // });
 
-// //npm start
+//npm start
 
 import express from "express";
 import mysql from "mysql2";
