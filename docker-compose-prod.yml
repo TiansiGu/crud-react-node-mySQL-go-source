@@ -13,8 +13,8 @@ services:
     ports:
       - "8800:8800"
     environment:
-      DB_HOST: book-project-db.cl1dqjwy3tlq.us-east-1.rds.amazonaws.com  # RDS endpoint
-      DB_USER: admin                    # RDS master user
-      DB_PASSWORD: password             # RDS password
-      DB_NAME: bookdb                   # RDS DB name
+      DB_HOST: ${DB_HOST}  # RDS endpoint
+      DB_USER: ${DB_USER}  # RDS master user
+      DB_PASSWORD: ${DB_PASSWORD}       # RDS password
+      DB_NAME: ${DB_NAME}               # RDS DB name
 
