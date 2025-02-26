@@ -4,6 +4,8 @@ services:
     container_name: bookapp-frontend
     ports:
       - "5173:5173"
+    environment:
+      VITE_BOOK_APP_API_BASE_URL: https://tiansiwork.live/api  # Backend URL in prod env (use domain name)
 
   backend:
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/book-app/backend:latest

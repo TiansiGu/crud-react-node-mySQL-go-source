@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5173:5173"
+    environment:
+      VITE_BOOK_APP_API_BASE_URL: ${BOOK_APP_API_BASE_URL}  # Backend URL in prod env (use domain name)
 
   backend:
     build:

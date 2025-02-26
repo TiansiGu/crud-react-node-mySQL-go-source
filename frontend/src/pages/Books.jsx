@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 //rafce
 const Books = () => {
 
+const API_BASE_URL = import.meta.env.VITE_BOOK_APP_API_BASE_URL || "http://localhost:8800";
 const [books, setBooks] = useState([])
 
 useEffect(()=>{
 const fetchAllBooks = async ()=>{
     try {
-      const res = await axios.get("http://localhost:8800/books")  
+      const res = await axios.get(`${API_BASE_URL}/books`)  
       setBooks(res.data)
       console.log(res)
     }catch(err){
@@ -22,7 +23,7 @@ fetchAllBooks()
 
 const handleDelete = async (id)=>{
     try{
-    await axios.delete("http://localhost:8800/books/"+id)
+    await axios.delete(`${API_BASE_URL}/books/${id}`)
     window.location.reload()
     }catch(err){
         console.log(err)
