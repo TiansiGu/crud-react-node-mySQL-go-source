@@ -1,0 +1,17 @@
+services:
+  frontend:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/book-app/frontend:latest
+    container_name: bookapp-frontend
+    ports:
+      - "5173:5173"
+
+  backend:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/book-app/backend:latest
+    container_name: bookapp-backend
+    ports:
+      - "8800:8800"
+    environment:
+      DB_HOST: ${DB_HOST}  # RDS endpoint
+      DB_USER: ${DB_USER}  # RDS master user
+      DB_PASSWORD: ${DB_PASSWORD}       # RDS password
+      DB_NAME: ${DB_NAME}               # RDS DB name
