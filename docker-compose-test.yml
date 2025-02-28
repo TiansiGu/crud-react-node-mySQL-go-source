@@ -1,0 +1,37 @@
+services:
+  frontend:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/book-app/frontend:latest
+    container_name: bookapp-frontend
+    ports:
+      - "5173:5173"
+
+  backend:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/book-app/backend:latest
+    container_name: bookapp-backend
+    ports:
+      - "8800:8800"
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      
+    volumes:
+      - my-db:/var/lib/mysql
+      - ./db_init.sql:/docker-entrypoint-initdb.d/db_init.sql
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  my-db:
+
