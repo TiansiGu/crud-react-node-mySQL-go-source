@@ -13,7 +13,11 @@ const db = mysql.createConnection({
 
 app.use(express.json()); //return json data using the api server postman
 
-app.use(cors());
+//enable CORS for frontend origin only
+const corsOptions = {
+  origin: ["https://tiansiwork.live/"],
+};
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.json("Hello World from the backend!!!");
